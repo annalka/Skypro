@@ -1,17 +1,67 @@
 package org.example;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
-    public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+    {
+        var dog = 8.0;
+        var cat = 3.6;
+        var paper = 763789;
 
-        for (int i = 1; i <= 9; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
-        }
+        System.out.println("dog = " + dog);
+        System.out.println("cat = " + cat);
+        System.out.println("paper = " + paper);
+
+        dog += 4;
+        cat += 4;
+        paper += 4;
+
+        System.out.println("dog = " + dog);
+        System.out.println("cat = " + cat);
+        System.out.println("paper = " + paper);
+
+        dog -= 3.5;
+        cat -= 1.6;
+        paper -= 7639;
+
+        System.out.println("dog = " + dog);
+        System.out.println("cat = " + cat);
+        System.out.println("paper = " + paper);
     }
-}
+
+        {
+            var friend = 19;
+            System.out.println("friend = " + friend);
+            friend += 2;
+            System.out.println("friend = " + friend);
+            friend /= 9;
+            System.out.println("friend = " + friend);
+        }
+        {
+            var frog = 3.5;
+            System.out.println("frog = " + frog);
+            frog *= 10;
+            System.out.println("frog = " + frog);
+            frog /= 3.5;
+            System.out.println("frog = " + frog);
+            frog += 4;
+            System.out.println("frog = " + frog);
+        }
+        {
+            var first_boxer = 78.2;
+            var second_boxer = 82.7;
+            System.out.println("Сумма веса" + (first_boxer + second_boxer));
+            System.out.println("Разница веса" + (second_boxer - first_boxer));
+            System.out.println("Остаток от деления" + (second_boxer % first_boxer));
+        }
+        {
+            var time = 640;
+            var work_time = 8;
+            var people = time / work_time;
+            System.out.println("Работников в компании - " + people + "Человек");
+
+            people += 94;
+            var new_time = people * work_time;
+            System.out.println("Если в компании работает" + people +
+                    "Человек, то всего" + new_time + "часов работы может быть поделено между сотрудниками");
+        }
+
+    }
