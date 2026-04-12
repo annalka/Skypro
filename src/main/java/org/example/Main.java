@@ -40,13 +40,13 @@ public class Main {
         System.out.println("За 20 минут машина произвела" + efficiency_per_20_min + "штук бутылок");
 
         int efficiencyPerDay = (efficiencyPer2Min / 2) * 24 * 60;
-        System.out.println("За 20 минут машина произвела" + efficiencyPerDay + "штук бутылок");
+        System.out.println("За 1 день машина произвела" + efficiencyPerDay + "штук бутылок");
 
         int efficiencyPerThreeDays = (efficiencyPer2Min / 2) * 24 * 60 * 3;
-        System.out.println("За 20 минут машина произвела" + efficiencyPerThreeDays + "штук бутылок");
+        System.out.println("За 3 дня машина произвела" + efficiencyPerThreeDays + "штук бутылок");
 
         long efficiencyPerMonth = (efficiencyPer2Min / 2) * 24 * 60 * 30;
-        System.out.println("За 20 минут машина произвела" + efficiencyPerMonth + "штук бутылок");
+        System.out.println("За месяц машина произвела" + efficiencyPerMonth + "штук бутылок");
     }
     {
       short needPaint = 120;
