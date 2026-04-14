@@ -1,37 +1,37 @@
 package org.example;
 
 public class Main {
-    {int a = 3333;
-    byte b = 22;
-    short c = 32000;
-    long d = 1000000L;
+    {int var1 = 3333;
+    byte var2 = 22;
+    short var3 = 32000;
+    long var4 = 1000000L;
 
-    float e = 3.45f;
-    double f = 3.000005;
+    float var5 = 3.45f;
+    double var6 = 3.000005;
 
-    System.out.println("Значение переменной a с типом int равно" + a);
-    System.out.println("Значение переменной b с типом byte равно" + b);
-    System.out.println("Значение переменной c с типом short равно" + c);
-    System.out.println("Значение переменной d с типом long равно" + d);
-    System.out.println("Значение переменной e с типом float равно" + e);
-    System.out.println("Значение переменной f с типом double равно" + f);
+    System.out.println("Значение переменной a с типом int равно" + var1);
+    System.out.println("Значение переменной b с типом byte равно" + var2);
+    System.out.println("Значение переменной c с типом short равно" + var3);
+    System.out.println("Значение переменной d с типом long равно" + var4);
+    System.out.println("Значение переменной e с типом float равно" + var5);
+    System.out.println("Значение переменной f с типом double равно" + var6);
     }
     {
-        float a = 27.12f;
-        long b = 987678965549L;
-        float c = 2.786f;
-        short d = 569;
-        short e = -159;
-        short f = 27897;
-        byte g = 67;
+        float var1 = 27.12f;
+        long var2 = 987678965549L;
+        float var3 = 2.786f;
+        short var4 = 569;
+        short var5 = -159;
+        short var6 = 27897;
+        byte var7 = 67;
     }
     {
-        byte LP = 23;
-        byte AS = 27;
-        byte EA = 30;
+        byte ludmilaPavlovnaClass = 23;
+        byte annaSergeevnaClass = 27;
+        byte ekaterinaAndreevnaClass = 30;
 
         short paper = 480;
-        int paperPerPeople = paper / (LP + AS + EA);
+        int paperPerPeople = paper / (ludmilaPavlovnaClass + annaSergeevnaClass + ekaterinaAndreevnaClass);
         System.out.println("На каждого ученика рассчитано" + paperPerPeople + "листов бумаги");
     }
     {
