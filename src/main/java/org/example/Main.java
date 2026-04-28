@@ -13,7 +13,6 @@ public class Main {
                 break;
         }
     }
-
     {
         int clientOS = 0;
         int clientDeviceYear = 2015;
