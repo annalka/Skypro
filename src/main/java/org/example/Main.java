@@ -3,60 +3,99 @@ package org.example;
 public class Main {
 
     {
-        for (int numbers = 1; numbers <=10; numbers++){
-            System.out.println("Номер"+ numbers);
-        }
-    }
-    {
-        for(int number =10; number >0; number--){
-            System.out.println("Номер" + number);
-        }
-    }
-    {
-        for (int evenNumbers = 0; evenNumbers <=17; evenNumbers= evenNumbers + 2){
-            System.out.println("Четные числа"+ evenNumbers);
-        }
-    }
-    {
-        for (int chain = 10; chain >= -10; chain-- ){
-            System.out.println("Номер"+ chain);
-        }
-    }
-    {
-        for (int year = 1904; year <= 2096; year = year + 4){
-            System.out.println("Високосный год"+year);
-        }
-    }
-    {
-        for (int number = 7; number<=98; number = number +7){
-            System.out.println(number);
-        }
-    }
-    {
-        for (int number = 1; number <= 256; number = number*2){
-            System.out.println(number);
-        }
-    }
-    {
-        int money = 29000;
-        int haveMoney = 0;
+        int clientOS = 0; // 0 — iOS, 1 — Android
 
-        for (int i = 0; i <= 12; i++){
-            haveMoney = haveMoney + money;
-            System.out.println("Месяц" + i+ "сумма накоплений равна" + haveMoney);
+        if (clientOS == 0) {
+            System.out.println("Установите версию приложения для iOS по ссылке");
+        } else {
+            System.out.println("Установите версию приложения для Android по ссылке");
         }
     }
-    {
-        int haveMoney = 29000;
 
-        for (int i = 1; i <= 12; i++){
-            haveMoney = haveMoney + haveMoney/100;
-            System.out.println("Месяц" + i+ "сумма накоплений равна" + haveMoney);
+    {
+        int clientOS = 0;
+        int clientDeviceYear = 2015;
+
+        if (clientDeviceYear <= 2015) {
+
+            switch (clientOS) {
+                case 0:
+                    System.out.println("Установите облегченную версию приложения для iOS по ссылке");
+                    break;
+                case 1:
+                    System.out.println("Установите облегченную версию приложения для Android по ссылке");
+                    break;
+            }
+        } else {
+            switch (clientOS) {
+                case 0:
+                    System.out.println("Установите версию приложения для iOS по ссылке");
+                    break;
+                case 1:
+                    System.out.println("Установите версию приложения для Android по ссылке");
+                    break;
+            }
         }
     }
     {
-        for (int i = 1; i <=10; i = i*2){
-            System.out.println(i);
-        }
+        int year = 2021;
+
+        if (year <= 1584) {
+            System.out.println("Год должен быть больше 1584.");
+        } else {
+            boolean isLeap = (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
+
+            if (isLeap) {
+                System.out.println(year + " год является високосным");
+            } else {
+                System.out.println(year + " год не является високосным");
+            }
         }
     }
+    {
+        int deliveryDistance = 95;
+        int deliveryDays = 0;
+
+        if (deliveryDistance > 100) {
+            System.out.println("Доставка невозможна");
+        } else {
+            if (deliveryDistance <= 20) {
+                deliveryDays = 1;
+            } else if (deliveryDistance <= 60) {
+                deliveryDays = 2;
+            } else if (deliveryDistance <= 100) {
+                deliveryDays = 3;
+            }
+
+            System.out.println("Потребуется дней: " + deliveryDays);
+        }
+    }
+    {
+        int monthNumber = 12;
+
+        switch (monthNumber){
+            case 1:
+            case 2:
+            case 12:
+                System.out.println("Зима");
+                break;
+            case 3:
+            case 4:
+            case 5:
+                System.out.println("Весна");
+                break;
+            case 6:
+            case 7:
+            case 8:
+                System.out.println("Лето");
+                break;
+            case 9:
+            case 10:
+            case 11:
+                System.out.println("Осень");
+                break;
+            default:
+                System.out.println("В году всего 12 месяцев");
+        }
+    }
+}
