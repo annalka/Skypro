@@ -13,29 +13,27 @@ public class Main {
     }
 
     {
+
         int clientOS = 0;
         int clientDeviceYear = 2015;
 
-        if (clientDeviceYear <= 2015) {
 
-            switch (clientOS) {
-                case 0:
-                    System.out.println("Установите облегченную версию приложения для iOS по ссылке");
-                    break;
-                case 1:
-                    System.out.println("Установите облегченную версию приложения для Android по ссылке");
-                    break;
-            }
+        String osName = "";
+        String versionType = "";
+
+        if (clientOS == 0) {
+            osName = "iOS";
         } else {
-            switch (clientOS) {
-                case 0:
-                    System.out.println("Установите версию приложения для iOS по ссылке");
-                    break;
-                case 1:
-                    System.out.println("Установите версию приложения для Android по ссылке");
-                    break;
-            }
+            osName = "Android";
         }
+
+        if (clientDeviceYear < 2015) {
+            versionType = "облегчённую версию";
+        } else {
+            versionType = "версию";
+        }
+
+        System.out.println("Установите" + versionType + " приложения для " + osName + " по ссылке");
     }
 
     {
@@ -43,12 +41,12 @@ public class Main {
 
         if (year <= 1584) {
             System.out.println("Год должен быть больше, чем 1584.");
+        } else if ((year % 4 == 0 && year % 100 != 0)) {
+            System.out.println(year + " год является високосным");
+        } else if (year % 400 == 0) {
+            System.out.println(year + " год является високосным");
         } else {
-            if ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0)) {
-                System.out.println(year + " год является високосным");
-            } else {
-                System.out.println(year + " год не является високосным");
-            }
+            System.out.println(year + " год не является високосным");
         }
     }
 
@@ -57,14 +55,15 @@ public class Main {
         int deliveryDays = 0;
 
         if (deliveryDistance > 100) {
-            System.out.println("Доставка невозможна");
+            System.out.println("Доставки нет");
         } else {
-            if (deliveryDistance <= 20) {
-                deliveryDays = 1;
-            } else if (deliveryDistance <= 60) {
-                deliveryDays = 2;
-            } else if (deliveryDistance <= 100) {
-                deliveryDays = 3;
+            deliveryDays = 1;
+
+            if (deliveryDistance > 20) {
+                deliveryDays += 1;
+            }
+            if (deliveryDistance > 60) {
+                deliveryDays += 1;
             }
 
             System.out.println("Потребуется дней: " + deliveryDays);
