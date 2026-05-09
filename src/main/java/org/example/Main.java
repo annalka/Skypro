@@ -1,101 +1,32 @@
 package org.example;
 
+import java.util.Arrays;
+
 public class Main {
 
     {
-        int clientOS = 0; // 0 — iOS, 1 — Android
+      int [] arr = new int[]{1,2,3};
+      double [] arr1 = new double[]{1.57d, 7.654d, 9.986d};
+      int [] arr2 = new int []{7,9,0,4,5};
 
-        if (clientOS == 0) {
-            System.out.println("Установите версию приложения для iOS по ссылке");
-        } else {
-            System.out.println("Установите версию приложения для Android по ссылке");
+      System.out.println(arr[0] +"," + arr[1] +","+ arr[2]);
+      System.out.println(arr1[0] + ","+ arr1[1] +","+ arr1[2]);
+      System.out.println(arr2[0] +"," + arr2[1] +"," + arr2[2] +","+ arr2[3] +","+ arr2[4]);
+
+      System.out.println(arr[2] +"," + arr[1] +","+ arr[0]);
+      System.out.println(arr1[2] + ","+ arr1[1] +","+ arr1[0]);
+      System.out.println(arr2[4] +"," + arr2[3] +"," + arr2[2] +","+ arr2[1] +","+ arr2[0]);
+
+      int i=0;
+
+      for (i = 0, i < arr.length, i++) {
+        if (arr[i] % 2 != 0) {
+            arr[i] = arr[i] + 1;
         }
+      }
+
+      System.out.println(Arrays.toString(arr));
+
     }
 
-    {
-
-        int clientOS = 0;
-        int clientDeviceYear = 2015;
-
-
-        String osName = "";
-        String versionType = "";
-
-        if (clientOS == 0) {
-            osName = "iOS";
-        } else {
-            osName = "Android";
-        }
-
-        if (clientDeviceYear < 2015) {
-            versionType = "облегчённую версию";
-        } else {
-            versionType = "версию";
-        }
-
-        System.out.println("Установите" + versionType + " приложения для " + osName + " по ссылке");
-    }
-
-    {
-        int year = 2021;
-
-        if (year <= 1584) {
-            System.out.println("Год должен быть больше, чем 1584.");
-        } else if ((year % 4 == 0 && year % 100 != 0)) {
-            System.out.println(year + " год является високосным");
-        } else if (year % 400 == 0) {
-            System.out.println(year + " год является високосным");
-        } else {
-            System.out.println(year + " год не является високосным");
-        }
-    }
-
-    {
-        int deliveryDistance = 95;
-        int deliveryDays = 0;
-
-        if (deliveryDistance > 100) {
-            System.out.println("Доставки нет");
-        } else {
-            deliveryDays = 1;
-
-            if (deliveryDistance > 20) {
-                deliveryDays += 1;
-            }
-            if (deliveryDistance > 60) {
-                deliveryDays += 1;
-            }
-
-            System.out.println("Потребуется дней: " + deliveryDays);
-        }
-    }
-
-    {
-        int monthNumber = 12;
-
-        switch (monthNumber) {
-            case 1:
-            case 2:
-            case 12:
-                System.out.println("Зима");
-                break;
-            case 3:
-            case 4:
-            case 5:
-                System.out.println("Весна");
-                break;
-            case 6:
-            case 7:
-            case 8:
-                System.out.println("Лето");
-                break;
-            case 9:
-            case 10:
-            case 11:
-                System.out.println("Осень");
-                break;
-            default:
-                System.out.println("В году всего 12 месяцев");
-        }
-    }
-}
+   }
