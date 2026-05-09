@@ -1,32 +1,119 @@
 package org.example;
 
-import java.util.Arrays;
-
 public class Main {
 
     {
-      int [] arr = new int[]{1,2,3};
-      double [] arr1 = new double[]{1.57d, 7.654d, 9.986d};
-      int [] arr2 = new int []{7,9,0,4,5};
+        int firstFriday = 3;
 
-      System.out.println(arr[0] +"," + arr[1] +","+ arr[2]);
-      System.out.println(arr1[0] + ","+ arr1[1] +","+ arr1[2]);
-      System.out.println(arr2[0] +"," + arr2[1] +"," + arr2[2] +","+ arr2[3] +","+ arr2[4]);
-
-      System.out.println(arr[2] +"," + arr[1] +","+ arr[0]);
-      System.out.println(arr1[2] + ","+ arr1[1] +","+ arr1[0]);
-      System.out.println(arr2[4] +"," + arr2[3] +"," + arr2[2] +","+ arr2[1] +","+ arr2[0]);
-
-      int i=0;
-
-      for (i = 0, i < arr.length, i++) {
-        if (arr[i] % 2 != 0) {
-            arr[i] = arr[i] + 1;
-        }
-      }
-
-      System.out.println(Arrays.toString(arr));
-
+        for (int day = 1; day <= 31; day++) {
+            if ((day - firstFriday) % 7 == 0 && day >= firstFriday) {
+                System.out.println("Сегодня пятница, " + day + "-е число. Необходимо подготовить отчет");
+            }
     }
-
    }
+    {
+        int totalDistance = 42195;
+        final int checkpointInterval = 500;
+        int coveredDistance = 0;
+
+        do {
+            int remainingDistance = totalDistance - coveredDistance;
+            System.out.println("Держитесь! Осталось " + remainingDistance + " метров");
+            coveredDistance += checkpointInterval;
+        } while (coveredDistance <= totalDistance);
+
+        for (coveredDistance = 0; coveredDistance <= totalDistance; coveredDistance += checkpointInterval) {
+            int remainingDistance = totalDistance - coveredDistance;
+            System.out.println("Держитесь! Осталось " + remainingDistance + " метров");
+        }
+    }
+    {
+        int budget = 500;
+        int day = 0;
+        int remainingBudget = budget;
+
+        while (remainingBudget >= 100 || (day % 5 == 0 && remainingBudget > 0)) {
+            day++;
+            if (day % 5 == 0) {
+                System.out.println("День " + day + ": бесплатный день парковки (5‑й день)");
+                continue;
+            }
+            if (remainingBudget >= 100) {
+                remainingBudget -= 100;
+                System.out.println("День " + day + ": списано 100 руб., осталось " + remainingBudget + " руб.");
+            } else {
+                break;
+            }
+        }
+        System.out.println("Итого: на " + budget + " руб. можно припарковаться на " + day + " дней.");
+
+        int totalDays = 0;
+
+        for (int days = 1; ; days++) {
+            if (days % 5 == 0) {
+                System.out.println("День " + day + ": бесплатный день парковки (5‑й день)");
+                totalDays++;
+                continue;
+            }
+            if (remainingBudget >= 100) {
+                remainingBudget -= 100;
+                totalDays++;
+                System.out.println("День " + day + ": списано 100 руб., осталось " + remainingBudget + " руб.");
+            } else {
+                break;
+            }
+        }
+    }
+    {
+        int month = 0;
+        double total = 0.0;
+
+        while (true) {
+            month++;
+            total += 15000;
+
+            if (month % 6 == 0) {
+                double interest = total * 0.07; // 7 % от текущей суммы
+                total += interest;
+                System.out.printf("Месяц %d: +15 000 руб., +%.2f руб. (7 %% процентов) → Итого: %.2f руб.%n",
+                        month, interest, total);
+            } else {
+                System.out.printf("Месяц %d: +15 000 руб. → Итого: %.2f руб.%n", month, total);
+            }
+
+            if (total >= 12000000) {
+                break;
+            }
+        }
+
+        System.out.println("Цель достигнута! Для накопления 12 000 000 руб. потребовалось " + month + " месяцев.");
+    }
+    {
+        int charge = 20;
+        int minute = 0;
+        int overheats = 0;
+
+        while (charge < 100 && overheats <= 3) {
+            minute++;
+            if (minute % 10 == 0) {
+                overheats++;
+                if (overheats > 3) {
+                    break;
+                }
+
+                System.out.println("Перегрев на " + minute + "-й минуте. Зарядка приостановлена на 2 минуты.");
+                minute += 2;
+                continue;
+            }
+            charge += 2;
+            System.out.println("Минута " + minute + ": заряд — " + charge + " %");
+        }
+        if (overheats > 3) {
+            System.out.println("Зарядка прекращена. Текущий заряд: " + charge + " %");
+        } else {
+            System.out.println("Зарядка завершена! Полный заряд достигнут.");
+        }
+
+        System.out.println("Время зарядки составило " + minute + " минут.");
+    }
+}
