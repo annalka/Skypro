@@ -28,12 +28,12 @@ public class Main {
         }
 
         for (int i = arr2.length - 1; i >= 0; i--) {
+            output.append(arr2[i]);
             if (i > 0) {
-                System.out.print(arr2[i] + ", ");
-                } else {
-                System.out.println(arr2[i]);
-                }
+                output.append(", ");
+            }
         }
+        System.out.println(output);
 
 
         int i=0;
