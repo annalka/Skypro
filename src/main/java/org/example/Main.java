@@ -63,7 +63,6 @@ public class Main {
             }
             System.out.println("При бюджете " + budget + " руб. автомобиль можно оставить на " + totalDays + " дней.");
         }
-        }
         {
             int month = 0;
             double total = 0.0;
@@ -117,3 +116,4 @@ public class Main {
             System.out.println("Время зарядки составило " + minute + " минут.");
         }
     }
+}
