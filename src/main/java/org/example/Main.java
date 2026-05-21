@@ -76,7 +76,6 @@ public class Main {
             System.out.print("inputArray4: " + Arrays.toString(inputArray4));
             System.out.print("outputArray4: " + Arrays.toString(outputArray4));
         }
-
         {
             int[] inputArray5 = {120000, -15000, 85000, 0, 210000};
             int[] outputArray5 = new int[1];
