@@ -1,5 +1,7 @@
 package org.example;
 
+import java.util.Arrays;
+
 public class Main {
     public static void main(String[] args) {
         {
@@ -21,27 +23,12 @@ public class Main {
                 }
             }
 
-            int average = sum / inputArray1.length;
+            float average = sum / inputArray1.length;
 
-            int[] outputArray1 = {sum, max, min, average};
+            float[] outputArray1 = {sum, max, min, average};
 
-            System.out.print("inputArray1: [");
-            for (int i = 0; i < inputArray1.length; i++) {
-                System.out.print(inputArray1[i]);
-                if (i < inputArray1.length - 1) {
-                    System.out.print(", ");
-                }
-            }
-            System.out.println("]");
-
-            System.out.print("outputArray1: [");
-            for (int i = 0; i < outputArray1.length; i++) {
-                System.out.print(outputArray1[i]);
-                if (i < outputArray1.length - 1) {
-                    System.out.print(", ");
-                }
-            }
-            System.out.println("]");
+            System.out.print("inputArray1: " + Arrays.toString(inputArray1));
+            System.out.print("outputArray1: " + Arrays.toString(outputArray1));
         }
 
         {
@@ -50,72 +37,57 @@ public class Main {
             double[] outputArray2 = new double[inputArray2.length];
             double taxRate = 0.13;
 
-            for (int i = 0; i < inputArray2.length; i++) {
-                outputArray2[i] = inputArray2[i] * taxRate;
+            int index = 0;
+            for (int salary : inputArray2) {
+                outputArray2[index] = salary * taxRate;
+                index++;
             }
 
-            System.out.print("inputArray2: [");
-            for (int i = 0; i < inputArray2.length; i++) {
-                System.out.print(inputArray2[i]);
-                if (i < inputArray2.length - 1) {
-                    System.out.print(", ");
-                }
-            }
-            System.out.println("]");
-
-            System.out.print("outputArray2 (налог 13%): [");
-            for (int i = 0; i < outputArray2.length; i++) {
-                System.out.printf("%.2f", outputArray2[i]);
-                if (i < outputArray2.length - 1) {
-                    System.out.print(", ");
-                }
-            }
-            System.out.println("]");
+            System.out.print("inputArray2: " + Arrays.toString(inputArray2));
+            System.out.print("outputArray2: " + Arrays.toString(outputArray2));
         }
+        {
+            int[] inputArray3 = {3500, 6200, 4800, 7500, 5100};
+
+            boolean[] outputArray3 = new boolean[inputArray3.length];
+
+            int index = 0;
+            for (int bonus : inputArray3) {
+                outputArray3[index] = bonus > 5000;
+                index++;
+            }
+            System.out.print("inputArray3: " + Arrays.toString(inputArray3));
+            System.out.print("outputArray3: " + Arrays.toString(outputArray3));
+        }
+
         {
             int[] inputArray4 = {15000, 22000, -500, 18000, 25000};
 
-            boolean outputArray4 = true;
+            boolean[] outputArray4 = new boolean[1];
+            outputArray4[0] = true;
 
             for (int balance : inputArray4) {
                 if (balance < 0) {
-                    outputArray4 = false;
+                    outputArray4[0] = false;
                     break;
                 }
-
-                System.out.print("inputArray4 (остатки на счёте по месяцам): [");
-                for (int i = 0; i < inputArray4.length; i++) {
-                    System.out.print(inputArray4[i]);
-                    if (i < inputArray4.length - 1) {
-                        System.out.print(", ");
-                    }
-                }
-                System.out.println("]");
-                System.out.println("outputArray4 (нет просрочек?): " + outputArray4);
             }
-        }
 
+            System.out.print("inputArray4: " + Arrays.toString(inputArray4));
+            System.out.print("outputArray4: " + Arrays.toString(outputArray4));
+        }
         {
             int[] inputArray5 = {120000, -15000, 85000, 0, 210000};
-
-            int outputArray5 = 0;
+            int[] outputArray5 = new int[1];
+            outputArray5[0] = 0;
 
             for (int profit : inputArray5) {
                 if (profit > 0) {
-                    outputArray5++;
+                    outputArray5[0]++;
                 }
             }
-
-            System.out.print("inputArray5 (чистая прибыль по месяцам): [");
-            for (int i = 0; i < inputArray5.length; i++) {
-                System.out.print(inputArray5[i]);
-                if (i < inputArray5.length - 1) {
-                    System.out.print(", ");
-                }
-            }
-            System.out.println("]");
-
-            System.out.println("outputArray5 (количество рентабельных месяцев): " + outputArray5);
+            System.out.println("inputArray5: " + Arrays.toString(inputArray5));
+            System.out.println("outputArray5: " + Arrays.toString(outputArray5));
         }
     }
 }
