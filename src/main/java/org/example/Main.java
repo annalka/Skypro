@@ -1,67 +1,121 @@
 package org.example;
 
 public class Main {
-    {
-        var dog = 8.0;
-        var cat = 3.6;
-        var paper = 763789;
+    public static void main(String[] args) {
+        {
+            int[] inputArray1 = {15000, 23000, 8500, 19000, 12000};
 
-        System.out.println("dog = " + dog);
-        System.out.println("cat = " + cat);
-        System.out.println("paper = " + paper);
+            int sum = 0;
+            int max = inputArray1[0];
+            int min = inputArray1[0];
 
-        dog += 4;
-        cat += 4;
-        paper += 4;
+            for (int payment : inputArray1) {
+                sum += payment;
 
-        System.out.println("dog = " + dog);
-        System.out.println("cat = " + cat);
-        System.out.println("paper = " + paper);
+                if (payment > max) {
+                    max = payment;
+                }
 
-        dog -= 3.5;
-        cat -= 1.6;
-        paper -= 7639;
+                if (payment < min) {
+                    min = payment;
+                }
+            }
 
-        System.out.println("dog = " + dog);
-        System.out.println("cat = " + cat);
-        System.out.println("paper = " + paper);
+            int average = sum / inputArray1.length;
+
+            int[] outputArray1 = {sum, max, min, average};
+
+            System.out.print("inputArray1: [");
+            for (int i = 0; i < inputArray1.length; i++) {
+                System.out.print(inputArray1[i]);
+                if (i < inputArray1.length - 1) {
+                    System.out.print(", ");
+                }
+            }
+            System.out.println("]");
+
+            System.out.print("outputArray1: [");
+            for (int i = 0; i < outputArray1.length; i++) {
+                System.out.print(outputArray1[i]);
+                if (i < outputArray1.length - 1) {
+                    System.out.print(", ");
+                }
+            }
+            System.out.println("]");
+        }
+
+        {
+            int[] inputArray2 = {45000, 60000, 38000, 52000, 48000};
+
+            double[] outputArray2 = new double[inputArray2.length];
+            double taxRate = 0.13;
+
+            for (int i = 0; i < inputArray2.length; i++) {
+                outputArray2[i] = inputArray2[i] * taxRate;
+            }
+
+            System.out.print("inputArray2: [");
+            for (int i = 0; i < inputArray2.length; i++) {
+                System.out.print(inputArray2[i]);
+                if (i < inputArray2.length - 1) {
+                    System.out.print(", ");
+                }
+            }
+            System.out.println("]");
+
+            System.out.print("outputArray2 (налог 13%): [");
+            for (int i = 0; i < outputArray2.length; i++) {
+                System.out.printf("%.2f", outputArray2[i]);
+                if (i < outputArray2.length - 1) {
+                    System.out.print(", ");
+                }
+            }
+            System.out.println("]");
+        }
+        {
+            int[] inputArray4 = {15000, 22000, -500, 18000, 25000};
+
+            boolean outputArray4 = true;
+
+            for (int balance : inputArray4) {
+                if (balance < 0) {
+                    outputArray4 = false;
+                    break;
+                }
+
+                System.out.print("inputArray4 (остатки на счёте по месяцам): [");
+                for (int i = 0; i < inputArray4.length; i++) {
+                    System.out.print(inputArray4[i]);
+                    if (i < inputArray4.length - 1) {
+                        System.out.print(", ");
+                    }
+                }
+                System.out.println("]");
+                System.out.println("outputArray4 (нет просрочек?): " + outputArray4);
+            }
+        }
+
+        {
+            int[] inputArray5 = {120000, -15000, 85000, 0, 210000};
+
+            int outputArray5 = 0;
+
+            for (int profit : inputArray5) {
+                if (profit > 0) {
+                    outputArray5++;
+                }
+            }
+
+            System.out.print("inputArray5 (чистая прибыль по месяцам): [");
+            for (int i = 0; i < inputArray5.length; i++) {
+                System.out.print(inputArray5[i]);
+                if (i < inputArray5.length - 1) {
+                    System.out.print(", ");
+                }
+            }
+            System.out.println("]");
+
+            System.out.println("outputArray5 (количество рентабельных месяцев): " + outputArray5);
+        }
     }
-
-        {
-            var friend = 19;
-            System.out.println("friend = " + friend);
-            friend += 2;
-            System.out.println("friend = " + friend);
-            friend /= 9;
-            System.out.println("friend = " + friend);
-        }
-        {
-            var frog = 3.5;
-            System.out.println("frog = " + frog);
-            frog *= 10;
-            System.out.println("frog = " + frog);
-            frog /= 3.5;
-            System.out.println("frog = " + frog);
-            frog += 4;
-            System.out.println("frog = " + frog);
-        }
-        {
-            var first_boxer = 78.2;
-            var second_boxer = 82.7;
-            System.out.println("Сумма веса" + (first_boxer + second_boxer));
-            System.out.println("Разница веса" + (second_boxer - first_boxer));
-            System.out.println("Остаток от деления" + (second_boxer % first_boxer));
-        }
-        {
-            var time = 640;
-            var work_time = 8;
-            var people = time / work_time;
-            System.out.println("Работников в компании - " + people + "Человек");
-
-            people += 94;
-            var new_time = people * work_time;
-            System.out.println("Если в компании работает" + people +
-                    "Человек, то всего" + new_time + "часов работы может быть поделено между сотрудниками");
-        }
-
-    }
+}
