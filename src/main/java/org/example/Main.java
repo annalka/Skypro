@@ -82,6 +82,5 @@ public class Main {
             int deliveryDistance = 95;
             calculateDeliveryDays(deliveryDistance);
         }
-
     }
 }
