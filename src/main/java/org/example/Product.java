@@ -1,14 +1,13 @@
 package org.example;
-
+import java.util.Arrays;
 import java.util.Objects;
 
-public class Product {
+class Product {
     private int id;
     private String name;
     private int price;
     private String category;
 
-    // Конструктор
     public Product(int id, String name, int price, String category) {
         this.id = id;
         this.name = name;
@@ -16,39 +15,23 @@ public class Product {
         this.category = category;
     }
 
-    // Геттеры
-    public int getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public int getPrice() {
-        return price;
-    }
-
-    public String getCategory() {
-        return category;
-    }
-
     @Override
     public String toString() {
-        return "Товар[артикул=" + id + ", название=" + name +
-                ", цена=" + price + ", категория=" + category + "]";
+        return "Товар[артикул=" + id +
+                ", название=" + name +
+                ", цена=" + price +
+                ", категория=" + category + "]";
     }
 
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
-        if (obj == null || getClass() != obj.getClass()) return false;
+        if (obj == null) return false;
+        if (getClass() != obj.getClass()) return false;
 
-        Product product = (Product) obj;
-
-        // Сравниваем id (примитивный тип) и category (строка через Objects.equals)
-        return id == product.id &&
-                Objects.equals(category, product.category);
+        Product other = (Product) obj;
+        return this.id == other.id &&
+                Objects.equals(this.category, other.category);
     }
 
     @Override
@@ -56,4 +39,3 @@ public class Product {
         return Objects.hash(id, category);
     }
 }
-
