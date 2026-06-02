@@ -8,6 +8,7 @@ public class Product {
     private int price;
     private String category;
 
+    // Конструктор
     public Product(int id, String name, int price, String category) {
         this.id = id;
         this.name = name;
@@ -15,6 +16,7 @@ public class Product {
         this.category = category;
     }
 
+    // Геттеры
     public int getId() {
         return id;
     }
@@ -44,6 +46,7 @@ public class Product {
 
         Product product = (Product) obj;
 
+        // Сравниваем id (примитивный тип) и category (строка через Objects.equals)
         return id == product.id &&
                 Objects.equals(category, product.category);
     }
@@ -53,3 +56,4 @@ public class Product {
         return Objects.hash(id, category);
     }
 }
+

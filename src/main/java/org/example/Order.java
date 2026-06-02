@@ -7,11 +7,13 @@ public class Order {
     private String customer;
     private Product[] basket;
 
+    // Конструктор
     public Order(String customer, Product[] basket) {
         this.customer = customer;
         this.basket = basket;
     }
 
+    // Геттеры
     public String getCustomer() {
         return customer;
     }
