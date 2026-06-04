@@ -3,7 +3,6 @@ package org.example;
 public class EmployeeBook {
     private Employee[] employees = new Employee[10];
 
-    // 1. Вывод всех сотрудников
     public void printAllEmployees() {
         for (Employee employee : employees) {
             if (employee != null) {
@@ -12,7 +11,6 @@ public class EmployeeBook {
         }
     }
 
-    // 2. Среднее значение зарплат
     public double calculateAverageSalary() {
         double sum = 0;
         int count = 0;
@@ -25,7 +23,6 @@ public class EmployeeBook {
         return count > 0 ? sum / count : 0;
     }
 
-    // 3. Вывод налогов
     public void printTaxes(String taxType) {
         for (Employee employee : employees) {
             if (employee == null) continue;
@@ -54,7 +51,6 @@ public class EmployeeBook {
         }
     }
 
-    // 4. Индексация зарплаты по отделу
     public void indexSalariesByDepartment(int department, double percent) {
         for (Employee employee : employees) {
             if (employee == null) continue;
@@ -65,7 +61,6 @@ public class EmployeeBook {
         }
     }
 
-    // 5. Поиск первого сотрудника отдела с зарплатой выше указанной
     public void findFirstEmployeeWithHigherSalary(int department, double wage) {
         for (int i = 0; i < employees.length; i++) {
             Employee employee = employees[i];
@@ -80,7 +75,6 @@ public class EmployeeBook {
         System.out.println("Сотрудник не найден");
     }
 
-    // 6. Поиск первых N сотрудников с зарплатой меньше указанной
     public void findEmployeesWithLowerSalary(double wage, int employeeNumber) {
         int found = 0;
         int index = 0;
@@ -95,7 +89,6 @@ public class EmployeeBook {
         }
     }
 
-    // 7. Проверка наличия сотрудника (по зарплате)
     public boolean containsEmployee(Employee employee) {
         if (employee == null) return false;
 
@@ -107,7 +100,6 @@ public class EmployeeBook {
         return false;
     }
 
-    // 8. Добавление нового сотрудника
     public boolean addEmployee(Employee employee) {
         for (int i = 0; i < employees.length; i++) {
             if (employees[i] == null) {
@@ -118,7 +110,6 @@ public class EmployeeBook {
         return false;
     }
 
-    // 9. Получение сотрудника по ID
     public Employee getEmployeeById(int id) {
         for (Employee employee : employees) {
             if (employee != null && employee.getId() == id) {
