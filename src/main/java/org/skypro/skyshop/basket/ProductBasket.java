@@ -31,12 +31,20 @@ public class ProductBasket {
             return;
         }
 
+        int specialCount = 0;
+
         for (int i = 0; i < size; i++) {
-            if (products[i] != null) {
-                System.out.println(products[i].getName() + ": " + products[i].getPrice());
+            Product product = products[i];
+            if (product != null) {
+                System.out.println(product.toString());
+                if (product.isSpecial()) {
+                    specialCount++;
+                }
             }
         }
+
         System.out.println("Итого: " + getTotalCost());
+        System.out.println("Специальных товаров: " + specialCount);
     }
 
     public boolean containsProductByName(String name) {
@@ -58,4 +66,5 @@ public class ProductBasket {
         size = 0;
     }
 }
+
 
