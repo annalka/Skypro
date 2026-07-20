@@ -25,6 +25,16 @@ public class ProductBasket {
         return total;
     }
 
+    private int countSpecialProducts() {
+        int count = 0;
+        for (int i = 0; i < size; i++) {
+            if (products[i] != null && products[i].isSpecial()) {
+                count++;
+            }
+        }
+        return count;
+    }
+
     public void printBasket() {
         if (size == 0) {
             System.out.println("в корзине пусто");
@@ -32,11 +42,14 @@ public class ProductBasket {
         }
 
         for (int i = 0; i < size; i++) {
-            if (products[i] != null) {
-                System.out.println(products[i].getName() + ": " + products[i].getPrice());
+            Product product = products[i];
+            if (product != null) {
+                System.out.println(product.toString());
             }
         }
+
         System.out.println("Итого: " + getTotalCost());
+        System.out.println("Специальных товаров: " + countSpecialProducts());
     }
 
     public boolean containsProductByName(String name) {
@@ -58,4 +71,3 @@ public class ProductBasket {
         size = 0;
     }
 }
-
