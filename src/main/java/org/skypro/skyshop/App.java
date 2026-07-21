@@ -1,48 +1,76 @@
 package org.skypro.skyshop;
 
 import org.skypro.skyshop.basket.ProductBasket;
-import org.skypro.skyshop.product.Product;
-import org.skypro.skyshop.product.SimpleProduct;
-import org.skypro.skyshop.product.DiscountedProduct;
-import org.skypro.skyshop.product.FixPriceProduct;
+import org.skypro.skyshop.product.*;
 
 public class App {
     public static void main(String[] args) {
-        Product apple = new SimpleProduct("Яблоко", 100);
-        Product bread = new SimpleProduct("Хлеб", 80);
-        Product jacket = new DiscountedProduct("Куртка", 10000, 20);
-        Product hat = new DiscountedProduct("Кепка", 1500, 10);
-        Product mug = new FixPriceProduct("Кружка");
-        Product extra = new SimpleProduct("Банан", 90);                   // лишний для проверки переполнения
-
         ProductBasket basket = new ProductBasket();
 
-        System.out.println("--- Добавление продуктов в корзину ---");
-        basket.addProduct(apple);
-        basket.addProduct(bread);
-        basket.addProduct(jacket);
-        basket.addProduct(hat);
-        basket.addProduct(mug);
+        SimpleProduct simple = new SimpleProduct("Простой товар", 100);
+        DiscountedProduct discounted = new DiscountedProduct("Товар со скидкой", 200, 20);
+        FixPriceProduct fixPrice = new FixPriceProduct("Фикс-прайс товар");
 
-        System.out.println("\n--- Попытка добавить продукт в заполненную корзину ---");
-        basket.addProduct(extra); // «Невозможно добавить продукт»
+        basket.addProduct(simple);
+        basket.addProduct(discounted);
+        basket.addProduct(fixPrice);
 
-        System.out.println("\n--- Печать содержимого корзины ---");
+        basket.addProduct(new SimpleProduct("Ещё товар", 50));
+        basket.addProduct(new SimpleProduct("И ещё один", 60));
+        basket.addProduct(new SimpleProduct("Слишком много", 70));
+
+        System.out.println("=== Содержимое корзины ===");
         basket.printBasket();
+        System.out.println();
 
-        System.out.println("\n--- Получение общей стоимости корзины ---");
-        System.out.println("Общая стоимость: " + basket.getTotalCost());
 
-        System.out.println("\n--- Поиск товара, который есть в корзине ---");
-        System.out.println("Есть ли в корзине «Куртка»? " + basket.containsProductByName("Куртка"));
+        System.out.println("Есть ли в корзине «Товар со скидкой»? " + basket.containsByName("Товар со скидкой"));
+        System.out.println("Есть ли в корзине «Неизвестный товар»? " + basket.containsByName("Неизвестный товар"));
+        System.out.println();
 
-        System.out.println("\n--- Поиск товара, которого нет в корзине ---");
-        System.out.println("Есть ли в корзине «Банан»? " + basket.containsProductByName("Банан"));
-
-        System.out.println("\n--- Очистка корзины ---");
         basket.clear();
-
-        System.out.println("\n--- Печать пустой корзины ---");
+        System.out.println("=== После очистки корзины ===");
         basket.printBasket();
+        System.out.println("Стоимость пустой корзины: " + basket.getTotalPrice());
+        System.out.println();
+
+        SearchEngine engine = new SearchEngine(20); // достаточно места под товары и статьи
+
+        engine.add(simple);
+        engine.add(discounted);
+        engine.add(fixPrice);
+        engine.add(new SimpleProduct("Другой простой товар", 80));
+
+        // Создаём и добавляем статьи
+        Article article1 = new Article("Как выбрать товар", "В этой статье расскажем, как правильно выбирать товары в нашем магазине.");
+        Article article2 = new Article("Скидки и акции", "Узнайте, какие скидки и акции действуют прямо сейчас.");
+        Article article3 = new Article("Новинки месяца", "Представляем новинки, которые вы не захотите пропустить.");
+
+        engine.add(article1);
+        engine.add(article2);
+        engine.add(article3);
+
+        searchAndPrint(engine, "товар");
+        searchAndPrint(engine, "скидка");
+        searchAndPrint(engine, "новинки");
+        searchAndPrint(engine, "не существует");
+    }
+
+    private static void searchAndPrint(SearchEngine engine, String query) {
+        System.out.println("=== Поиск по запросу: \"" + query + "\" ===");
+        Searchable[] results = engine.search(query);
+        boolean hasResult = false;
+
+        for (Searchable item : results) {
+            if (item != null) {
+                hasResult = true;
+                System.out.println(item.getStringRepresentation());
+            }
+        }
+
+        if (!hasResult) {
+            System.out.println("Ничего не найдено");
+        }
+        System.out.println();
     }
 }
