@@ -1,7 +1,6 @@
 package org.skypro.skyshop.product;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class SearchEngine {
     private final List<Searchable> storage;
@@ -14,12 +13,13 @@ public class SearchEngine {
         storage.add(item);
     }
 
-    public List<Searchable> search(String query) {
-        List<Searchable> result = new ArrayList<>();
+    public Map<String, Searchable> search(String query) {
+        Map<String, Searchable> result = new TreeMap<>();
 
         for (Searchable item : storage) {
             if (item != null && item.getSearchTerm().contains(query)) {
-                result.add(item);
+                String key = item.getName();
+                result.put(key, item);
             }
         }
         return result;

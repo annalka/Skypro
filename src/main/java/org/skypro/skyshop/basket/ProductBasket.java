@@ -2,45 +2,53 @@ package org.skypro.skyshop.basket;
 
 import org.skypro.skyshop.product.Product;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class ProductBasket {
-    private final List<Product> items;
+    private final Map<String, List<Product>> itemsByNames;
 
     public ProductBasket() {
-        this.items = new ArrayList<>();
+        this.itemsByNames = new HashMap<>();
     }
 
     public void addProduct(Product product) {
-        items.add(product);
+        String name = product.getName();
+
+        itemsByNames.computeIfAbsent(name, k -> new ArrayList<>()).add(product);
     }
 
     public List<Product> removeProductsByName(String name) {
-        List<Product> removed = new ArrayList<>();
-        for (Product item : items) {
-            if (item.getName().equals(name)) {
-                removed.add(item);
-            }
-        }
-        items.removeAll(removed);
+        List<Product> removedList = itemsByNames.remove(name);
 
-        return removed;
+        if (removedList == null) {
+            return Collections.emptyList();
+        }
+
+        return removedList;
     }
 
     public void printBasket() {
-        if (items.isEmpty()) {
+        Collection<List<Product>> allLists = itemsByNames.values();
+
+        if (allLists.isEmpty()) {
             System.out.println("Корзина пуста.");
             return;
         }
 
         System.out.println("Содержимое корзины:");
-        for (Product item : items) {
-            System.out.println("- " + item.toString());
+
+        for (List<Product> products : allLists) {
+            for (Product item : products) {
+                System.out.println("- " + item.toString());
+            }
         }
     }
 
-    public List<Product> getItems() {
-        return new ArrayList<>(items);
+    public List<Product> getAllProducts() {
+        List<Product> all = new ArrayList<>();
+        for (List<Product> list : itemsByNames.values()) {
+            all.addAll(list);
+        }
+        return all;
     }
 }

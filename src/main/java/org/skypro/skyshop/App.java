@@ -4,6 +4,7 @@ import org.skypro.skyshop.basket.ProductBasket;
 import org.skypro.skyshop.product.*;
 
 import java.util.List;
+import java.util.Map;
 
 public class App {
     public static void main(String[] args) {
@@ -22,11 +23,11 @@ public class App {
         }
 
         SimpleProduct simple1 = new SimpleProduct("Простой товар", 100);
-        SimpleProduct simple2 = new SimpleProduct("Простой товар", 150); // Товар с таким же именем для теста удаления
+        SimpleProduct simple2 = new SimpleProduct("Простой товар", 150); // Товар с таким же именем для теста удаления и Map
         DiscountedProduct discounted = new DiscountedProduct("Товар со скидкой", 200, 20);
         FixPriceProduct fixPrice = new FixPriceProduct("Фикс-прайс товар");
 
-        System.out.println("\n=== Работа корзины (List вместо массива) ===");
+        System.out.println("\n=== Работа корзины (Map вместо List) ===");
         ProductBasket basket = new ProductBasket();
 
         basket.addProduct(simple1);
@@ -64,7 +65,7 @@ public class App {
         System.out.println("\nСодержимое корзины (должно остаться без изменений):");
         basket.printBasket();
 
-        System.out.println("\n=== Работа поиска (все результаты вместо 5) ===");
+        System.out.println("\n=== Работа поиска (Отсортированная Map результатов) ===");
         SearchEngine engine = new SearchEngine();
         engine.add(simple1);
         engine.add(simple2);
@@ -76,13 +77,14 @@ public class App {
         engine.add(article1);
         engine.add(article2);
 
-        List<Searchable> results = engine.search("товар");
-        System.out.println("Результаты поиска 'товар' (все совпадения):");
+        Map<String, Searchable> results = engine.search("товар");
+        System.out.println("Результаты поиска 'товар' (отсортированная Map по именам):");
+
         if (results.isEmpty()) {
             System.out.println("Ничего не найдено.");
         } else {
-            for (Searchable r : results) {
-                System.out.println("- " + r.toString());
+            for (Map.Entry<String, Searchable> entry : results.entrySet()) {
+                System.out.println("- Имя (ключ): " + entry.getKey() + " | Объект: " + entry.getValue().toString());
             }
         }
 
