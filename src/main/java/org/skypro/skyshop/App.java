@@ -2,7 +2,6 @@ package org.skypro.skyshop;
 
 import org.skypro.skyshop.basket.ProductBasket;
 import org.skypro.skyshop.product.*;
-
 import java.util.List;
 
 public class App {
