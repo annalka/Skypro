@@ -1,20 +1,21 @@
 package org.skypro.skyshop.product;
 
-import java.util.*;
+import java.util.LinkedList;
+import java.util.List;
 
 public class SearchEngine {
     private final List<Searchable> storage;
 
     public SearchEngine() {
-        this.storage = new ArrayList<>();
+        this.storage = new LinkedList<>();
     }
 
     public void add(Searchable item) {
         storage.add(item);
     }
 
-    public Map<String, Searchable> search(String query) {
-        Map<String, Searchable> result = new TreeMap<>();
+    public List<Searchable> search(String query) {
+        List<Searchable> result = new LinkedList<>();
 
         for (Searchable item : storage) {
             if (item != null && item.getSearchTerm().contains(query)) {

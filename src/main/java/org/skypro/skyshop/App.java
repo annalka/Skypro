@@ -23,11 +23,11 @@ public class App {
         }
 
         SimpleProduct simple1 = new SimpleProduct("Простой товар", 100);
-        SimpleProduct simple2 = new SimpleProduct("Простой товар", 150); // Товар с таким же именем для теста удаления и Map
+        SimpleProduct simple2 = new SimpleProduct("Простой товар", 150);
         DiscountedProduct discounted = new DiscountedProduct("Товар со скидкой", 200, 20);
         FixPriceProduct fixPrice = new FixPriceProduct("Фикс-прайс товар");
 
-        System.out.println("\n=== Работа корзины (Map вместо List) ===");
+        System.out.println("\n=== Работа корзины (LinkedList) ===");
         ProductBasket basket = new ProductBasket();
 
         basket.addProduct(simple1);
@@ -65,7 +65,7 @@ public class App {
         System.out.println("\nСодержимое корзины (должно остаться без изменений):");
         basket.printBasket();
 
-        System.out.println("\n=== Работа поиска (Отсортированная Map результатов) ===");
+        System.out.println("\n=== Работа поиска (Все результаты в List) ===");
         SearchEngine engine = new SearchEngine();
         engine.add(simple1);
         engine.add(simple2);
@@ -77,8 +77,8 @@ public class App {
         engine.add(article1);
         engine.add(article2);
 
-        Map<String, Searchable> results = engine.search("товар");
-        System.out.println("Результаты поиска 'товар' (отсортированная Map по именам):");
+        List<Searchable> results = engine.search("товар");
+        System.out.println("\nРезультаты поиска 'товар' (все совпадения):");
 
         if (results.isEmpty()) {
             System.out.println("Ничего не найдено.");

@@ -2,13 +2,16 @@ package org.skypro.skyshop.basket;
 
 import org.skypro.skyshop.product.Product;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
 
 public class ProductBasket {
     private final Map<String, List<Product>> itemsByNames;
 
     public ProductBasket() {
-        this.itemsByNames = new HashMap<>();
+        this.items = new LinkedList<>();
     }
 
     public void addProduct(Product product) {
@@ -18,10 +21,14 @@ public class ProductBasket {
     }
 
     public List<Product> removeProductsByName(String name) {
-        List<Product> removedList = itemsByNames.remove(name);
-
-        if (removedList == null) {
-            return Collections.emptyList();
+        List<Product> removed = new ArrayList<>();
+        Iterator<Product> iterator = items.iterator();
+        while (iterator.hasNext()) {
+            Product current = iterator.next();
+            if (current.getName().equals(name)) {
+                removed.add(current);
+                iterator.remove();
+            }
         }
 
         return removedList;
@@ -42,13 +49,5 @@ public class ProductBasket {
                 System.out.println("- " + item.toString());
             }
         }
-    }
-
-    public List<Product> getAllProducts() {
-        List<Product> all = new ArrayList<>();
-        for (List<Product> list : itemsByNames.values()) {
-            all.addAll(list);
-        }
-        return all;
     }
 }
