@@ -4,6 +4,7 @@ import org.skypro.skyshop.basket.ProductBasket;
 import org.skypro.skyshop.product.*;
 
 import java.util.List;
+import java.util.Map;
 
 public class App {
     public static void main(String[] args) {
@@ -82,8 +83,8 @@ public class App {
         if (results.isEmpty()) {
             System.out.println("Ничего не найдено.");
         } else {
-            for (Searchable r : results) {
-                System.out.println("- " + r.toString());
+            for (Map.Entry<String, Searchable> entry : results.entrySet()) {
+                System.out.println("- Имя (ключ): " + entry.getKey() + " | Объект: " + entry.getValue().toString());
             }
         }
 

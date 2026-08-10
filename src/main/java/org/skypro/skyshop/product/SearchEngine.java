@@ -19,7 +19,8 @@ public class SearchEngine {
 
         for (Searchable item : storage) {
             if (item != null && item.getSearchTerm().contains(query)) {
-                result.add(item);
+                String key = item.getName();
+                result.put(key, item);
             }
         }
         return result;

@@ -8,14 +8,16 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class ProductBasket {
-    private final List<Product> items;
+    private final Map<String, List<Product>> itemsByNames;
 
     public ProductBasket() {
         this.items = new LinkedList<>();
     }
 
     public void addProduct(Product product) {
-        items.add(product);
+        String name = product.getName();
+
+        itemsByNames.computeIfAbsent(name, k -> new ArrayList<>()).add(product);
     }
 
     public List<Product> removeProductsByName(String name) {
@@ -29,18 +31,23 @@ public class ProductBasket {
             }
         }
 
-        return removed;
+        return removedList;
     }
 
     public void printBasket() {
-        if (items.isEmpty()) {
+        Collection<List<Product>> allLists = itemsByNames.values();
+
+        if (allLists.isEmpty()) {
             System.out.println("Корзина пуста.");
             return;
         }
 
         System.out.println("Содержимое корзины:");
-        for (Product item : items) {
-            System.out.println("- " + item.toString());
+
+        for (List<Product> products : allLists) {
+            for (Product item : products) {
+                System.out.println("- " + item.toString());
+            }
         }
     }
 }
