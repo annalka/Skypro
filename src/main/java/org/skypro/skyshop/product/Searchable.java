@@ -5,7 +5,6 @@ public interface Searchable {
     String getContentType();
     String getName();
 
-    // Ключевое слово default обязательно!
     default String getStringRepresentation() {
         return getName() + " — " + getContentType();
     }
