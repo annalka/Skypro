@@ -1,66 +1,41 @@
 package org.skypro.skyshop.product;
 
-import java.util.LinkedList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.TreeSet;
 
 public class SearchEngine {
-    private final List<Searchable> storage;
-
-    public SearchEngine() {
-        this.storage = new LinkedList<>();
-    }
+    private final Set<Searchable> items = new HashSet<>();
 
     public void add(Searchable item) {
-        storage.add(item);
+        items.add(item);
     }
 
-    public List<Searchable> search(String query) {
-        List<Searchable> result = new LinkedList<>();
-
-        for (Searchable item : storage) {
-            if (item != null && item.getSearchTerm().contains(query)) {
-                String key = item.getName();
-                result.put(key, item);
-            }
-        }
-        return result;
-    }
-
-    public Searchable findBestMatch(String search) throws BestResultNotFound {
-        if (search == null || search.isBlank()) {
-            throw new BestResultNotFound("Поисковый запрос не может быть пустым или null.");
+    public Set<Searchable> search(String query) {
+        if (query == null || query.isBlank()) {
+            return new TreeSet<>(new SearchResultComparator());
         }
 
-        Searchable bestMatch = null;
-        int maxCount = -1;
+        String lowerQuery = query.toLowerCase();
+        Set<Searchable> filtered = new HashSet<>();
 
-        for (Searchable item : storage) {
-            if (item != null) {
-                String term = item.getSearchTerm();
-                int count = countOccurrences(term, search);
-
-                if (count > maxCount) {
-                    maxCount = count;
-                    bestMatch = item;
-                }
+        for (Searchable item : items) {
+            if (item.getSearchTerm().toLowerCase().contains(lowerQuery)) {
+                filtered.add(item);
             }
         }
 
-        if (bestMatch == null || maxCount == 0) {
-            throw new BestResultNotFound("Не найдено ни одного подходящего элемента для запроса: \"" + search + "\"");
-        }
+        TreeSet<Searchable> sortedResults = new TreeSet<>(new SearchResultComparator());
+        sortedResults.addAll(filtered);
 
-        return bestMatch;
+        return sortedResults;
     }
 
-    private int countOccurrences(String text, String sub) {
-        if (sub.isEmpty()) return 0;
-        int count = 0;
-        int index = 0;
-        while ((index = text.indexOf(sub, index)) != -1) {
-            count++;
-            index += sub.length();
+    public Searchable findBestMatch(String query) throws BestResultNotFound {
+        Set<Searchable> results = search(query);
+        if (results.isEmpty()) {
+            throw new BestResultNotFound("Ничего не найдено для запроса: " + query);
         }
-        return count;
+        return results.iterator().next();
     }
 }

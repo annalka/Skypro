@@ -4,7 +4,6 @@ import org.skypro.skyshop.basket.ProductBasket;
 import org.skypro.skyshop.product.*;
 
 import java.util.List;
-import java.util.Map;
 
 public class App {
     public static void main(String[] args) {
@@ -17,17 +16,24 @@ public class App {
         }
 
         try {
-            new SimpleProduct("Товар", -10);
+            new SimpleProduct("Товар", -1);
         } catch (IllegalArgumentException e) {
             System.out.println("Поймана ошибка валидации: " + e.getMessage());
         }
 
+        System.out.println("\n=== Создание объектов ===");
+
         SimpleProduct simple1 = new SimpleProduct("Простой товар", 100);
         SimpleProduct simple2 = new SimpleProduct("Простой товар", 150);
+
         DiscountedProduct discounted = new DiscountedProduct("Товар со скидкой", 200, 20);
         FixPriceProduct fixPrice = new FixPriceProduct("Фикс-прайс товар");
 
-        System.out.println("\n=== Работа корзины (LinkedList) ===");
+        Article article1 = new Article("Как выбрать товар", "В этой статье расскажем, как правильно выбирать товары.");
+        Article article2 = new Article("Скидки", "Скидки и акции действуют сейчас.");
+        Article article3 = new Article("Как выбрать товар", "Дублирующая статья");
+
+        System.out.println("\n=== Работа корзины ===");
         ProductBasket basket = new ProductBasket();
 
         basket.addProduct(simple1);
@@ -36,55 +42,36 @@ public class App {
         basket.addProduct(fixPrice);
 
         System.out.println("\n--- Удаление существующего продукта 'Простой товар' ---");
-        List<Product> removedExisting = basket.removeProductsByName("Простой товар");
+        List<Searchable> removedExisting = basket.removeProductsByName("Простой товар");
 
-        System.out.println("Удаленные продукты:");
-        if (removedExisting.isEmpty()) {
-            System.out.println("Список пуст");
-        } else {
-            for (Product p : removedExisting) {
-                System.out.println("- " + p.toString());
-            }
-        }
+        System.out.println("Удаленные продукты (" + removedExisting.size() + " шт.):");
+        removedExisting.forEach(p -> System.out.println("- " + p.toString()));
 
         System.out.println("\nСодержимое корзины после удаления:");
         basket.printBasket();
 
-        System.out.println("\n--- Удаление несуществующего продукта 'Неизвестный товар' ---");
-        List<Product> removedNonExisting = basket.removeProductsByName("Неизвестный товар");
-
-        System.out.println("Удаленные продукты:");
-        if (removedNonExisting.isEmpty()) {
-            System.out.println("Список пуст");
-        } else {
-            for (Product p : removedNonExisting) {
-                System.out.println("- " + p.toString());
-            }
-        }
-
-        System.out.println("\nСодержимое корзины (должно остаться без изменений):");
-        basket.printBasket();
-
-        System.out.println("\n=== Работа поиска (Все результаты в List) ===");
+        System.out.println("\n=== Работа поиска ===");
         SearchEngine engine = new SearchEngine();
+
         engine.add(simple1);
         engine.add(simple2);
         engine.add(discounted);
         engine.add(fixPrice);
 
-        Article article1 = new Article("Как выбрать товар", "В этой статье расскажем, как правильно выбирать товары. Товар товар товар.");
-        Article article2 = new Article("Скидки", "Скидки и акции действуют сейчас.");
         engine.add(article1);
         engine.add(article2);
+        engine.add(article3);
 
-        List<Searchable> results = engine.search("товар");
-        System.out.println("\nРезультаты поиска 'товар' (все совпадения):");
+        String query = "товар";
+        java.util.Set<Searchable> results = engine.search(query);
 
+        System.out.println("\nРезультаты поиска '" + query + "':");
         if (results.isEmpty()) {
             System.out.println("Ничего не найдено.");
         } else {
-            for (Map.Entry<String, Searchable> entry : results.entrySet()) {
-                System.out.println("- Имя (ключ): " + entry.getKey() + " | Объект: " + entry.getValue().toString());
+            int index = 1;
+            for (Searchable item : results) {
+                System.out.println((index++) + ". " + item.toString());
             }
         }
 
@@ -94,12 +81,6 @@ public class App {
             System.out.println("Лучший результат: " + best.toString());
         } catch (BestResultNotFound e) {
             System.out.println("Ошибка поиска: " + e.getMessage());
-        }
-
-        try {
-            engine.findBestMatch("несуществующий_запрос");
-        } catch (BestResultNotFound e) {
-            System.out.println("Ожидаемая ошибка: " + e.getMessage());
         }
     }
 }

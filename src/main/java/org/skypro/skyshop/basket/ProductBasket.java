@@ -1,53 +1,39 @@
 package org.skypro.skyshop.basket;
 
-import org.skypro.skyshop.product.Product;
+import org.skypro.skyshop.product.Searchable;
 
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.List;
 
 public class ProductBasket {
-    private final Map<String, List<Product>> itemsByNames;
+    private final List<Searchable> items = new ArrayList<>();
 
-    public ProductBasket() {
-        this.items = new LinkedList<>();
+    public void addProduct(Searchable product) {
+        items.add(product);
     }
 
-    public void addProduct(Product product) {
-        String name = product.getName();
-
-        itemsByNames.computeIfAbsent(name, k -> new ArrayList<>()).add(product);
-    }
-
-    public List<Product> removeProductsByName(String name) {
-        List<Product> removed = new ArrayList<>();
-        Iterator<Product> iterator = items.iterator();
-        while (iterator.hasNext()) {
-            Product current = iterator.next();
-            if (current.getName().equals(name)) {
-                removed.add(current);
-                iterator.remove();
+    public List<Searchable> removeProductsByName(String name) {
+        List<Searchable> removed = new ArrayList<>();
+        for (int i = items.size() - 1; i >= 0; i--) {
+            if (items.get(i).getName().equals(name)) {
+                removed.add(items.remove(i));
             }
         }
-
-        return removedList;
+        return removed;
     }
 
     public void printBasket() {
-        Collection<List<Product>> allLists = itemsByNames.values();
-
-        if (allLists.isEmpty()) {
+        if (items.isEmpty()) {
             System.out.println("Корзина пуста.");
             return;
         }
-
         System.out.println("Содержимое корзины:");
-
-        for (List<Product> products : allLists) {
-            for (Product item : products) {
-                System.out.println("- " + item.toString());
-            }
+        for (Searchable item : items) {
+            System.out.println("- " + item.toString());
         }
+    }
+
+    public List<Searchable> getItems() {
+        return items;
     }
 }
